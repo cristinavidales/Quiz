@@ -1,0 +1,2 @@
+DATABASE_URL=postgres://qdyesqzydjmxsu:-yTm823wnLobZ5PH3Hw4AVzBdw@ec2-23-21-76-246.compute-1.amazonaws.com:5432/d5vtbdnqrf1571
+DATABASE_STORAGE=quiz.sqlite
