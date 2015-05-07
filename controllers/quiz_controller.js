@@ -10,12 +10,24 @@ next();
 ).catch(function(error){next(error)});
 };
 
+
+
 // GET /quizes
 exports.index = function(req, res) {
-models.Quiz.findAll().then(
+	if(req.query.search===undefined){
+		models.Quiz.findAll().then(
 function(quizes) {
 res.render('quizes/index.ejs', {quizes: quizes});
 })
+	}else{var search =req.query.search;
+	search = "%"+search+"%";
+	search = search.replace(/ /g,'%');
+	console.log(search);
+models.Quiz.findAll({where: ["pregunta like ?", search]}).then(
+function(quizes) {
+res.render('quizes/index.ejs', {quizes: quizes});
+})}
+
 };
 
 // GET /quizes/question
