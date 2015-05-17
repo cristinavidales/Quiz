@@ -10,6 +10,16 @@ next();
 ).catch(function(error){next(error)});
 };
 
+//POST /quizes/create
+exports.create = function(req,res){
+	var quiz = models.Quiz.build(req.body.quiz);
+//guarda en DB los campos pregunta y respusta de quiz
+quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
+	res.redirect('/quizes');
+
+}) //redireccion http (URL RELATIVO) lista de preguntas
+
+};
 
 
 // GET /quizes
@@ -43,5 +53,16 @@ if (req.query.respuesta === req.quiz.respuesta){
 }
 res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado}); 
 
+};
+
+//GET /quizes/new
+
+//controlador de new
+
+exports.new = function(req, res){
+	var quiz = models.Quiz.build( //crea objeto quiz
+		{pregunta: "Pregunta", respuesta: "Respuesta"}
+		);
+	res.render('quizes/new', {quiz: quiz});
 };
 
