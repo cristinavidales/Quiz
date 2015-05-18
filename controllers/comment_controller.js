@@ -24,6 +24,7 @@ exports.ownershipRequired = function(req, res, next){
     ).catch(function(error){next(error)});
 };
 
+
 // Autoload :id de comentarios
 exports.load = function(req, res, next, commentId) {
   models.Comment.find({
