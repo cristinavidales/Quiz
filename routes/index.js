@@ -38,7 +38,7 @@ router.delete('/quizes/:quizId(\\d+)',sessionController.auto_logout,sessionContr
 router.get('/quizes/:quizId(\\d+)/comments/new',sessionController.auto_logout, commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',sessionController.auto_logout, commentController.create);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',sessionController.auto_logout, sessionController.loginRequired, userController.ownershipRequired,  commentController.publish);
-
+router.get('/quizes/statistics',quizController.statistics);
 
 // Definición de rutas de cuenta
 router.get('/user',  userController.new);     // formulario sign un

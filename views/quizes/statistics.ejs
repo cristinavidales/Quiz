@@ -1,0 +1,7 @@
+<h2> Estadísticas </h2>
+
+<p> El número de preguntas es <%=preguntas%>
+<p> El número de comentarios es <%=comentarios%>
+<p> El número de comentarios medio es <%if (preguntas) {%> <%=comentarios/preguntas%> <% } else {%> 0 <%}%> 
+<p> El número de preguntas con comentarios es <%=quizcomentado%>
+<p> El número de preguntas sin comentarios es <%=preguntas-quizcomentado%>
