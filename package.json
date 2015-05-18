@@ -10,7 +10,7 @@
     "npm": "1.4.x"
   },
   "devDependencies": {
-    "sqlite3": "^3.0.4"
+    "sqlite3": "^3.0.8"
   },
   "dependencies": {
     "body-parser": "~1.8.1",
@@ -27,6 +27,5 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^2.1.3",
     "serve-favicon": "~2.1.3",
-    "sqlite3": "^3.0.8"
   }
 }

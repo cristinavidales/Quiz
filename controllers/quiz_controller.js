@@ -1,4 +1,5 @@
 var models= require('../models/models.js');
+
 // Autoload :id
 exports.load = function(req, res, next, quizId) {
 models.Quiz.find(quizId).then(function(quiz) {
@@ -33,7 +34,7 @@ exports.index = function(req, res) {
 	if(req.query.search===undefined){
 		models.Quiz.findAll().then(
 function(quizes) {
-res.render('quizes/index.ejs', {quizes: quizes});
+res.render('quizes/index.ejs', {quizes: quizes, errors: []});
 })
 	}else{var search =req.query.search;
 	search = "%"+search+"%";
