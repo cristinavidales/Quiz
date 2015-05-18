@@ -29,6 +29,12 @@ omitNull: true // solo Postgres
 var Quiz =sequelize.import(path.join(__dirname, 'quiz'));
 exports.Quiz= Quiz; //exportar definición de tabla Quiz
 
+var Comment = sequelize.import(path.join(__dirname,'comment'));
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
+exports.Comment = Comment;
+
 sequelize.sync().then(function() {
 // then(..) ejecuta el manejador una vez creada la tabla
 Quiz.count().then(function (count){
