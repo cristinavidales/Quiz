@@ -13,7 +13,7 @@ exports.new = function(req, res) {
     req.session.errors = {};
 
     res.render('sessions/new', {errors: errors});
-};
+}; 
 
 // MW de auto-logout
 exports.auto_logout = function(req,res,next){
