@@ -35,11 +35,17 @@ Quiz.hasMany(Comment);
 
 var User = sequelize.import(path.join(__dirname, 'user'));
 
+var Favourites = sequelize.import(path.join(__dirname,'favourites'));
+
 Quiz.belongsTo(User);
 User.hasMany(Quiz);
 
+User.belongsToMany(Quiz, {through: 'Favourites'});
+Quiz.belongsToMany(User, {through: 'Favourites'});
+
 exports.User=User;
 exports.Comment = Comment;
+exports.Favourites = Favourites;
 
 // sequelize.sync() inicializa tabla de preguntas en DB
 sequelize.sync().then(function() {

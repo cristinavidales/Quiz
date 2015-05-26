@@ -7,6 +7,7 @@ var authorController=require('../controllers/author_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 var userController= require('../controllers/user_controller');
+var favController = require('../controllers/favourites_controller');
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz', errors: []});
@@ -20,7 +21,7 @@ router.get('/login',  sessionController.new);     // formulario login
 router.post('/login', sessionController.create);  // crear sesión
 router.get('/logout', sessionController.destroy); // destruir sesión
 
-router.get('/quizes' ,sessionController.auto_logout, quizController.index);
+router.get('/quizes' , sessionController.auto_logout, quizController.index);
 router.get('/quizes/:quizId(\\d+)' , sessionController.auto_logout,quizController.show);
 
 router.get('/quizes/:quizId(\\d+)/answer' ,sessionController.auto_logout, quizController.answer);
@@ -47,4 +48,10 @@ router.get('/user/:userId(\\d+)/edit',sessionController.auto_logout,  sessionCon
 router.put('/user/:userId(\\d+)',sessionController.auto_logout,  sessionController.loginRequired,  userController.ownershipRequired, userController.update);     // actualizar información de cuenta
 router.delete('/user/:userId(\\d+)',sessionController.auto_logout,  sessionController.loginRequired, userController.ownershipRequired, userController.destroy);     // borrar cuenta
 router.get('/user/:userId(\\d+)/quizes', quizController.index);
+
+// Definición de rutas de favoritos
+router.get('/user/:userId(\\d+)/favourites',  favController.show);  // ver los favoritos de un usuario
+router.put('/user/:userId(\\d+)/favourites/:quizId(\\d+)',  sessionController.loginRequired, favController.update);
+router.delete('/user/:userId(\\d+)/favourites/:quizId(\\d+)',  sessionController.loginRequired, favController.destroy);
+
 module.exports = router;
